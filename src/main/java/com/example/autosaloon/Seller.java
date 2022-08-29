@@ -3,8 +3,8 @@ package com.example.autosaloon;
 public class Seller {
 
     private final Saloon saloon;
-    int choosingTime = 1000;
-    int producingTime = 6500;
+    private final int choosingTime = 1000;
+    private final int producingTime = 6500;
 
 
     public Seller(Saloon saloon) {
