@@ -2,6 +2,7 @@ package com.example.autosaloon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Condition;
 
 public class Saloon {
 
@@ -10,6 +11,7 @@ public class Saloon {
 
     public void sellCar() {
         seller.sellCars();
+
     }
 
     public void produceCar() {

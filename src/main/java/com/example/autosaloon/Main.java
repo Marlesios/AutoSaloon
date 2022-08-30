@@ -8,10 +8,12 @@ public class Main {
 
         Saloon saloon = new Saloon();
 
-        for (int i = 0; i < 6; i++) {
-            new Thread(null, saloon::sellCar, "покупатель " + i).start();
-            new Thread(null, saloon::produceCar, "BMW").start();
-        }
+
+        new Thread(null, saloon::sellCar, "покупатель 1" ).start();
+        new Thread(null, saloon::sellCar, "покупатель 2" ).start();
+        new Thread(null, saloon::sellCar, "покупатель 3" ).start();
+        new Thread(null, saloon::produceCar, "BMW").start();
+
 
     }
 
