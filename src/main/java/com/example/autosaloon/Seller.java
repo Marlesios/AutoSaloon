@@ -10,7 +10,7 @@ public class Seller {
     final Lock lock = new ReentrantLock(true);
     final Condition condition = lock.newCondition();
     private final int choosingTime = 1000;
-    private final int producingTime = 6500;
+    private final int producingTime = 3000;
     final private int cars = 3;
     private int count = 0;
     private int amount = 9;
@@ -42,9 +42,9 @@ public class Seller {
     }
 
     public void sellCars() {
-        for (int i = 0; i < cars; i++) {
-            try {
 
+        try {
+            for (int i = 0; i < 3; i++) {
                 lock.lock();
                 System.out.println(Thread.currentThread().getName() + " пришел купить тачку");
                 Thread.sleep(choosingTime);
@@ -56,14 +56,12 @@ public class Seller {
                 Thread.sleep(choosingTime);
                 System.out.println(Thread.currentThread().getName() + " забрал свою машину");
                 saloon.getCars().remove(0);
-
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
-
             }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
 
         }
 
