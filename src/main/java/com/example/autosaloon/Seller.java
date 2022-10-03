@@ -13,7 +13,7 @@ public class Seller {
     private final int producingTime = 3000;
     final private int cars = 3;
     private int count = 0;
-    private int amount = 9;
+    private int amount = 10;
 
 
     public Seller(Saloon saloon) {
@@ -23,9 +23,9 @@ public class Seller {
 
     public void producingCar() {
         for (int i = 0; i < amount; i++) {
+            lock.lock();
             try {
 
-                lock.lock();
                 System.out.println("новая машина в стадии производства");
                 Thread.sleep(producingTime);
                 saloon.getCars().add(new Car());
@@ -39,13 +39,14 @@ public class Seller {
 
             }
         }
+
     }
 
     public void sellCars() {
-
+        lock.lock();
         try {
-            for (int i = 0; i < 3; i++) {
-                lock.lock();
+            for (int i = 0; i < cars; i++) {
+
                 System.out.println(Thread.currentThread().getName() + " пришел купить тачку");
                 Thread.sleep(choosingTime);
                 while (saloon.getCars().size() == 0) {
